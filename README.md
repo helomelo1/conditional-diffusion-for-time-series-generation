@@ -1,1 +1,1 @@
-# Synthetic-LOB-Generator
+# Conditional Diffusion for Time-Series Generation
