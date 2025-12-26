@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import Dataset
 
 
-class TimeSeriesDataset(nn.Module):
+class TimeSeriesDataset(Dataset):
     def __init__(self, prices, seq_len=128, normalize=True):
         self.seq_len = seq_len
 
