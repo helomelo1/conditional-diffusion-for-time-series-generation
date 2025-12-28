@@ -46,16 +46,19 @@ Each sequence is treated as a single data object.
 
 ## Training Objective
 
-The model minimizes:
+The diffusion model is trained to predict the Gaussian noise added during the forward diffusion process.
 
-\[
-\mathcal{L} = \mathbb{E}\left[\|\epsilon - \epsilon_\theta(x_t, t)\|^2\right]
-\]
+At each training step:
+- A clean sequence x0 is corrupted with noise to obtain xt
+- The model learns to predict the exact noise used in this corruption
 
-where:
-- \(x_t\) is the noisy sequence at diffusion step \(t\)
-- \(\epsilon\) is Gaussian noise
-- \(\epsilon_\theta\) is the model’s noise prediction
+Formally, the objective is to minimize the mean squared error between:
+- the true noise ε
+- the model prediction ε̂ = fθ(xt, t)
+
+Loss = mean( (ε − ε̂)² )
+
+This corresponds to maximum likelihood training under the diffusion framework and is standard in DDPM-based models.
 
 ---
 
