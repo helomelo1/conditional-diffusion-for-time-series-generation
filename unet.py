@@ -33,7 +33,7 @@ class UNet(nn.Module):
     def __init__(self, seq_len=128, base_ch=64):
         super().__init__()
 
-        self.time_emb = TimeEmbedding()
+        self.time_emb = TimeEmbedding(base_ch)
 
         self.down1 = ConvBlock(1, base_ch)
         self.down2 = ConvBlock(base_ch, base_ch * 2)
