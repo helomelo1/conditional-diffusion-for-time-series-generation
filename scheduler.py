@@ -16,7 +16,15 @@ def cosine_beta_scheduler(T, s=0.008):
 
 
 class DiffusionScheduler:
-    def __init__(self, x0, t, noise=None):
+    def __init__(self, T=1000, device="cpu"):
+        self.T = T
+        self.device = device
+
+        self.betas = cosine_beta_scheduler(T).to(device)
+        self.alphas = 1.0 - self.betas
+        self.alpha_bar = torch.cumprod(self.alphas, dim=0)
+
+    def add_noise(self, x0, t, noise=None):
         if noise is None:
             noise = torch.rand_like(x0)
 
