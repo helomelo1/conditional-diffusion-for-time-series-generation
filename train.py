@@ -18,7 +18,7 @@ T = 1000 #diffusion steps
 
 # Training Loop
 def train():
-    prices = load_prices_from_csv("^GSPC.csv", price_column="Close")
+    prices = load_prices_from_csv("/data/^GSPC.csv", price_column="Close")
     dataset = TimeSeriesDataset(prices, seq_len=SEQ_LEN)
     dataloader = DataLoader(dataset=dataset, batch_size=BATCH_SIZE, shuffle=True)
 
