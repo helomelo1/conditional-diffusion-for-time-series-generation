@@ -94,25 +94,25 @@ def get_dataloaders(data_dir="aclImdb", batch_size=16, max_length=128, max_train
 
     return train_loader, test_loader, train_data.tokenizer
     
-if __name__ == "__main__":
-    # quick test
-    train_loader, val_loader, tokenizer = get_dataloaders(
-        batch_size=4, max_train=100, max_test=20
-    )
+# if __name__ == "__main__":
+#     # quick test
+#     train_loader, val_loader, tokenizer = get_dataloaders(
+#         batch_size=4, max_train=100, max_test=20
+#     )
     
-    batch = next(iter(train_loader))
-    print(f"\ntrain batches: {len(train_loader)}")
-    print(f"val batches: {len(val_loader)}")
+#     batch = next(iter(train_loader))
+#     print(f"\ntrain batches: {len(train_loader)}")
+#     print(f"val batches: {len(val_loader)}")
     
-    print(f"\nbatch shapes:")
-    for k, v in batch.items():
-        print(f"  {k}: {v.shape}")
+#     print(f"\nbatch shapes:")
+#     for k, v in batch.items():
+#         print(f"  {k}: {v.shape}")
     
-    # show example
-    masked = tokenizer.decode(batch['input_ids'][0])
-    original = tokenizer.decode(batch['labels'][0], skip_special_tokens=True)
-    n_masked = batch['mask_positions'][0].sum().item()
+#     # show example
+#     masked = tokenizer.decode(batch['input_ids'][0])
+#     original = tokenizer.decode(batch['labels'][0], skip_special_tokens=True)
+#     n_masked = batch['mask_positions'][0].sum().item()
     
-    print(f"\noriginal: {original[:150]}...")
-    print(f"masked: {masked[:150]}...")
-    print(f"masked tokens: {n_masked}")
+#     print(f"\noriginal: {original[:150]}...")
+#     print(f"masked: {masked[:150]}...")
+#     print(f"masked tokens: {n_masked}")
